@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgethub/core/responsive/responsive_shell.dart';
 
-/// A simpler version of a main navigation shell
-/// It just takes a child widget and determines the active tab 
-/// based on the current route location.
+
 class MainShell extends StatelessWidget {
   final Widget child;
 
@@ -16,7 +14,7 @@ class MainShell extends StatelessWidget {
     if (location.startsWith('/faq')) return 2;
     if (location.startsWith('/api')) return 3;
     if (location.startsWith('/settings')) return 4;
-    return 0; // Default is Dashboard ('/')
+    return 0;
   }
 
   void _onItemTapped(int index, BuildContext context) {
@@ -43,7 +41,7 @@ class MainShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentIndex = _calculateSelectedIndex(context);
 
-    // ResponsiveShell adapts the layout to mobile, tablet, or desktop
+
     return ResponsiveShell(
       mobile: Scaffold(
         body: child,

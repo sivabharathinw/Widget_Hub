@@ -56,14 +56,14 @@ class _ApiScreenState extends State<ApiScreen> {
         future: _postsFuture,
         builder: (context, snapshot) {
           
-          // 1. Loading State
+          // Loading State
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(), // Simple loading spinner for beginners
             );
           } 
           
-          // 2. Error State
+          //  Error State
           else if (snapshot.hasError) {
             return Center(
               child: Column(
@@ -83,12 +83,12 @@ class _ApiScreenState extends State<ApiScreen> {
             );
           } 
           
-          // 3. Empty State
+          //  Empty State
           else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No data found'));
           }
 
-          // 4. Success State - We have data!
+          //  Success State
           final posts = snapshot.data!;
           return ListView.builder(
             padding: const EdgeInsets.all(16.0),

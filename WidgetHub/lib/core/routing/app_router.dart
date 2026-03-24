@@ -11,9 +11,9 @@ import 'package:widgethub/features/onboarding/onboarding_screen.dart';
 import 'package:widgethub/features/settings/settings_screen.dart';
 import 'package:widgethub/features/tasks/task_screen.dart';
 
-// Basic GoRouter without ShellRoute!
+
 final routerProvider = Provider<GoRouter>((ref) {
-  // Check our simple in-memory boolean
+
   final hasCompletedOnboarding = ref.watch(onboardingProvider);
 
   return GoRouter(
@@ -24,8 +24,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const OnboardingScreen(),
       ),
       
-      // Look! No complex ShellRoute. Just standard GoRoutes!
-      // We explicitly wrap each screen with our MainShell.
+
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const MainShell(child: DashboardScreen()),
@@ -44,7 +43,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(
             path: 'detail',
-            // API Detail shouldn't have the bottom nav bar, so no MainShell!
             builder: (context, state) {
               final post = state.extra as Map<String, dynamic>;
               return ApiDetailScreen(post: post);
