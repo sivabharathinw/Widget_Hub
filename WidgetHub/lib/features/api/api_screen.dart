@@ -11,15 +11,17 @@ class ApiScreen extends StatefulWidget {
 }
 
 class _ApiScreenState extends State<ApiScreen> {
+  //postsFuture  holds the future result of api call
   late Future<List<dynamic>> _postsFuture;
 
   @override
+  //initstrate() calls only once when the widget is created
   void initState() {
     super.initState();
+    //fetchposts create new api response and store in postsfuture
     _fetchPosts();
   }
 
-  // Reloads the data simply by creating a new Future
   void _fetchPosts() {
     setState(() {
       _postsFuture = fetchPosts();
@@ -27,11 +29,12 @@ class _ApiScreenState extends State<ApiScreen> {
   }
 
   Future<List<dynamic>> fetchPosts() async {
-    // Artificial physical delay to show loading state specifically for beginners
+
     await Future.delayed(const Duration(seconds: 1));
     final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts?_limit=10'));
 
     if (response.statusCode == 200) {
+      //if it success then decode the json data
       return json.decode(response.body);
     } else {
       throw Exception('Failed to load posts');
@@ -53,6 +56,7 @@ class _ApiScreenState extends State<ApiScreen> {
       ),
       // FutureBuilder automatically listens to a Future and rebuilds as the state changes
       body: FutureBuilder<List<dynamic>>(
+        //holds the api response
         future: _postsFuture,
         builder: (context, snapshot) {
           

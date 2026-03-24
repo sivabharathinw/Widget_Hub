@@ -11,7 +11,7 @@ class ResponsiveShell extends StatelessWidget {
     required this.tablet,
     required this.desktop,
   });
-
+//it returs the true or false value based on the condition
   static bool isMobile(BuildContext context) =>
       MediaQuery.of(context).size.width < 600;
 
@@ -24,6 +24,7 @@ class ResponsiveShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //here layoutbuilder is decide which device is to be render
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1024) {

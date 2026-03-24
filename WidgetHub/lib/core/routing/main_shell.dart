@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgethub/core/responsive/responsive_shell.dart';
 
-
+//this file decides the responsives shell
 class MainShell extends StatelessWidget {
   final Widget child;
 
   const MainShell({super.key, required this.child});
 
   int _calculateSelectedIndex(BuildContext context) {
+    //GoRouterState.of(context).uri.path gives the current path
     final String location = GoRouterState.of(context).uri.path;
     if (location.startsWith('/tasks')) return 1;
     if (location.startsWith('/faq')) return 2;
     if (location.startsWith('/api')) return 3;
     if (location.startsWith('/settings')) return 4;
-    return 0;
+    return 0;//dashboard
   }
+  //if user taps the index it will navigate to that page
 
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {

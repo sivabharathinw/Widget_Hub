@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ApiDetailScreen extends StatelessWidget {
+  //post is the api data
   final Map<String, dynamic> post;
 
   const ApiDetailScreen({super.key, required this.post});
@@ -11,6 +12,7 @@ class ApiDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Detail View'),
       ),
+      //singlechildscrollview is allows to scroll the widgets vertically
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(

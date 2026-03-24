@@ -11,11 +11,11 @@ import 'package:widgethub/features/onboarding/onboarding_screen.dart';
 import 'package:widgethub/features/settings/settings_screen.dart';
 import 'package:widgethub/features/tasks/task_screen.dart';
 
-
+//provider instance for go router
 final routerProvider = Provider<GoRouter>((ref) {
 
   final hasCompletedOnboarding = ref.watch(onboardingProvider);
-
+//it returns the obj of go router
   return GoRouter(
     initialLocation: hasCompletedOnboarding ? '/dashboard' : '/onboarding',
     routes: [
@@ -40,10 +40,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/api',
         builder: (context, state) => const MainShell(child: ApiScreen()),
+        //nested routes
         routes: [
           GoRoute(
             path: 'detail',
             builder: (context, state) {
+              //pass the data to the detail screen
               final post = state.extra as Map<String, dynamic>;
               return ApiDetailScreen(post: post);
             },
