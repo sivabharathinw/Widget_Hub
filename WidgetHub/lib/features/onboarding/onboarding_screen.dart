@@ -13,7 +13,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-
+//instead of writing ui three times manually it just store data in a list and build ui dynamically
   final List<Map<String, String>> _onboardingData = [
     {
       'title': 'Welcome to WidgetHub',
@@ -31,7 +31,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       'icon': 'rocket_launch',
     },
   ];
-
+//converts string to icon
   IconData _getIconData(String iconName) {
     switch (iconName) {
       case 'widgets':
@@ -44,7 +44,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         return Icons.star;
     }
   }
-
+//after user completeonboarding goes to dashboard
   void _completeOnboarding() {
     ref.read(onboardingProvider.notifier).completeOnboarding();
     context.go('/dashboard');
@@ -72,15 +72,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
             ),
             Expanded(
+              //pageview is a horizaontally scroallble screen
+              //pagecontroller controls the scrollable like go to next page or go to specfuc page with animations
+              //pageview.builder create the pages manually
               child: PageView.builder(
                 controller: _pageController,
+                //it is a callback function it runs every time the page chnages
                 onPageChanged: (index) {
                   setState(() {
                     _currentPage = index;
                   });
                 },
+                //totalnumber of pages
                 itemCount: _onboardingData.length,
+                //build each page it runs 3 times
                 itemBuilder: (context, index) {
+                  //get the current page data
                   final data = _onboardingData[index];
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
@@ -116,12 +123,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(24.0),
+              //dot indicator at the bottom section and next ,getstarted button
               child: Row(
+                //it creates left side dot and right side buttons give speace between them
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    //it creates multiple dorts automaticallyy
                     children: List.generate(
+                      //no of dots equals to the number of pages
                       _onboardingData.length,
+                      //callback funtion runs automtaically when value chnages
                       (index) => AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: const EdgeInsets.symmetric(horizontal: 4),

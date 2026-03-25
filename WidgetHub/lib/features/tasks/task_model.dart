@@ -1,45 +1,31 @@
 import 'dart:convert';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class Task {
-  final String id;
-  final String title;
-  final bool isCompleted;
+import 'serializers.dart';
 
-  Task({
-    required this.id,
-    required this.title,
-    this.isCompleted = false,
-  });
+part 'task_model.g.dart';
 
-  Task copyWith({
-    String? id,
-    String? title,
-    bool? isCompleted,
-  }) {
-    return Task(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      isCompleted: isCompleted ?? this.isCompleted,
+abstract class Task implements Built<Task, TaskBuilder> {
+  String get id;
+  String get title;
+  bool get isCompleted;
+
+  Task._();
+
+  factory Task([void Function(TaskBuilder) updates]) = _$Task;
+
+  // JSON
+  String toJson() {
+    return json.encode(serializers.serializeWith(Task.serializer, this));
+  }
+
+  static Task? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+      Task.serializer,
+      json.decode(jsonString),
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'isCompleted': isCompleted,
-    };
-  }
-
-  factory Task.fromMap(Map<String, dynamic> map) {
-    return Task(
-      id: map['id'],
-      title: map['title'],
-      isCompleted: map['isCompleted'] ?? false,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Task.fromJson(String source) => Task.fromMap(json.decode(source));
+  static Serializer<Task> get serializer => _$taskSerializer;
 }
