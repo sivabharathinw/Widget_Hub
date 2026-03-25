@@ -6,8 +6,16 @@
       <excludeFolder url="file://$MODULE_DIR$/WidgetHub/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/WidgetHub/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/WidgetHub/build" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/abstract_factory/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/abstract_factory/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/abstract_factory/build" />
+      <excludeFolder url="file://$MODULE_DIR$/WidgetHub/creational_patterns/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>

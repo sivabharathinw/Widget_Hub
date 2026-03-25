@@ -7,7 +7,6 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   Task
-  -,
 ])
 final Serializers serializers =
 (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

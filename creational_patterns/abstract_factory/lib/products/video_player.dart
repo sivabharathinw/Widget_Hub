@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-abstract class AudioPlayerWidget {
+abstract class VideoPlayerWidget {
   Widget build(String url);
 }

@@ -7,9 +7,7 @@ import 'serializers.dart';
 part 'task_model.g.dart';
 
 abstract class Task implements Built<Task, TaskBuilder> {
-  String get id;
-  String get title;
-  bool get isCompleted;
+
 
   Task._();
 
@@ -28,4 +26,7 @@ abstract class Task implements Built<Task, TaskBuilder> {
   }
 
   static Serializer<Task> get serializer => _$taskSerializer;
+  String get id;
+  String get title;
+  bool get isCompleted;
 }

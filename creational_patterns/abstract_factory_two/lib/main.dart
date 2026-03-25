@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // change this to IOSFactory to switch
+    //just we want the factory to follow the abstract factory does not care about  what the actual class is.
+    //client code depends on the abstract code not on cocrete code
     UIFactory factory = AndroidFactory();
 
     return MaterialApp(
@@ -22,7 +24,10 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //this factory.createbutton points to the concretee factory it calls the method inside it
+              //then it calls the concerete produccts it actually implements abstract products
               factory.createButton(),
+
               const SizedBox(height: 20),
               factory.createText(),
             ],
