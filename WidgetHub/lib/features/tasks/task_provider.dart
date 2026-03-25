@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'task_model.dart';
 
 final tasksProvider =
-NotifierProvider<TasksNotifier, List<Task>>(TasksNotifier.new);
+NotifierProvider<TasksNotifier, List<Task>>(()=>TasksNotifier(),);
 
 class TasksNotifier extends Notifier<List<Task>> {
 

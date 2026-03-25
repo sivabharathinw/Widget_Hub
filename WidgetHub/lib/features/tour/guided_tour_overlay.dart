@@ -44,6 +44,7 @@ class GuidedTourOverlay {
                     ),
                   ],
                 ),
+                //IgnorePointer ignors the tap or click on the widget
                 child: IgnorePointer(
                   child: Container(
                     decoration: BoxDecoration(

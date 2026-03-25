@@ -50,6 +50,7 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
                     controller: _taskController,
                     decoration:
                     const InputDecoration(hintText: 'New task...'),
+                    //when press enter it added
                     onSubmitted: (_) => _addTask(),
                   ),
                 ),
@@ -67,21 +68,25 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
               itemCount: displayTasks.length,
               itemBuilder: (context, index) {
                 final task = displayTasks[index];
-
+//dismissible makes the task swipeble
                 return Dismissible(
                   key: ValueKey(task.id),
+                  //this ui shown when you swipe right
                   background: Container(
                     color: Colors.green,
+                    //position of an icon
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Icon(Icons.check, color: Colors.white),
                   ),
+                  //this ui runs when leftswipe
                   secondaryBackground: Container(
                     color: Colors.red,
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
+                  //this run before delete to confrom remove or not
                   confirmDismiss: (direction) async {
                     if (direction ==
                         DismissDirection.startToEnd) {
@@ -92,6 +97,7 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
                     }
                     return true;
                   },
+ //it runs after delete
                   onDismissed: (direction) {
                     if (direction ==
                         DismissDirection.endToStart) {
