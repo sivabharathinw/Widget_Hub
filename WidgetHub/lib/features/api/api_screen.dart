@@ -58,6 +58,7 @@ class _ApiScreenState extends State<ApiScreen> {
       body: FutureBuilder<List<dynamic>>(
         //holds the api response
         future: _postsFuture,
+        //snapshot is  the obj that contains the current state of the future (loading, error, data)
         builder: (context, snapshot) {
           
           // Loading State
@@ -126,10 +127,15 @@ class _ApiScreenState extends State<ApiScreen> {
                             children: [
                               Text(
                                 post['title'],
+                                //theme.of(context) gives the current theme of the app
+                                //textTheme is collection of prebuilt textstyles in the ThemeData
+                                //this line just get teh current teme and predefined textstyles just add the bold
                                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
+                                //for the text content it should occupy only one page
                                 maxLines: 1,
+                                //TextOverflow.ellipsis  it avoids the overflow error by adding ... (dots) if the text is too long
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 8),

@@ -14,21 +14,31 @@ class DashboardScreen extends ConsumerStatefulWidget {
 }
 
 class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+  //create unique id for task
   final GlobalKey _tasksCardKey = GlobalKey();
   
   @override
   void initState() {
     super.initState();
+    //WidgetsBinding is a flutter class that handles  ui frames and rendering
+    //addPostFrameCallback is method that is called after the current frame is rendered
+    //when flutter creates the widgets it creates the widgets in the mry than it draws on the screen
+    //why we need to write this... before drwaing the  screen run _checkAndShowTour() too early:
+    // Flutter can’t find the card
+    // The overlay can’t position itself
+    // The tour won’t appear correct
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkAndShowTour();
     });
   }
 
   void _checkAndShowTour() {
+    //check if the user has seen the tour globally if not shown them
     if (!_hasSeenTourGlobally) {
       GuidedTourOverlay.showTour(
         context,
         targetKey: _tasksCardKey,
+        //when the user closes the tour it will set the _hasSeenTourGlobally to true it is a paramter of GuidedTourOverlay
         onDismiss: () {
           _hasSeenTourGlobally = true;
         },
@@ -46,11 +56,14 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           if (ResponsiveShell.isDesktop(context) || ResponsiveShell.isTablet(context)) {
             crossAxisCount = 4;
           }
-
+//generally gridview in vertical -main axis
           return GridView.count(
+            //no of columns 4 columns per row
             crossAxisCount: crossAxisCount,
             padding: const EdgeInsets.all(16),
+            //horixontal spacong
             mainAxisSpacing: 16,
+            //vertical
             crossAxisSpacing: 16,
             children: [
               _buildCard(context, 'Tasks', Icons.check_box, '/tasks', Colors.blue, key: _tasksCardKey),
@@ -69,6 +82,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       key: key,
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      //cutts off the overflow and smooth the edges
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => context.go(route),
